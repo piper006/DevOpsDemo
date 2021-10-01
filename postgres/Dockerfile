@@ -1,0 +1,4 @@
+FROM postgres:13.1-alpine
+ENV POSTGRES_PASSWORD 12345
+EXPOSE 5432
+CMD ["bash"]
