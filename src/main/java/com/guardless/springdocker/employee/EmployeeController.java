@@ -22,7 +22,7 @@ public class EmployeeController {
     @RequestMapping("/api/employees")
     public ResponseEntity<?> fetchAllEmployees(){
         List<Employee> employees = employeeService.fetchAllEmployees();
-        if(employees.isEmpty()) throw new ApiRequestException("There are no employees in our database");
+        if(employees.isEmpty()) throw new ApiRequestException("There are no employees in our database!");
         return ResponseEntity.ok(employees);
     }
 
