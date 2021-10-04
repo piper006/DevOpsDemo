@@ -1,0 +1,18 @@
+node{
+    def mvnHome = tool name: 'mvn', type: 'maven'
+    def mvnCMD = "${mvnHome}/bin/mvn"
+
+    def registry = "guardless/employee_test"
+    def dockerImage = ''
+    def registryCredentials = 'dockerhub'
+
+
+  
+    stage('Git pull'){
+        git 'https://github.com/piper006/DevOpsDemo.git'
+    }
+    stage('Mvn Package'){
+        sh "$mvnCMD --version"
+        sh "$mvnCMD package"
+    }
+}

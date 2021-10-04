@@ -2,12 +2,13 @@ version: '3'
 
 services:
   app:
-    image: 'guardless/employee_test'
+    image: 'springdocker:0.2'
     ports:
-    - "8182:8181"
+    - "8080"
     container_name: springdocker
     depends_on:
-      - db_test
+      db_test:
+        condition: service_healthy
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db_test:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
@@ -20,6 +21,11 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts downvolumes:
 volumes:
