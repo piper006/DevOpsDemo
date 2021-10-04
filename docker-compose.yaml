@@ -30,6 +30,6 @@ services:
       retries: 5
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts downvolumes:
-      - 
+    
 volumes:
     database-data: # named volumes can be managed easier using docker-compose
