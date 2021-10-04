@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: 'guardless/employee_test:63'
+    image: 'guardless/employee_test:latest'
     ports:
     - "8080"
     container_name: springdocker
@@ -19,7 +19,7 @@ services:
     image: 'postgres:13.1-alpine'
     container_name: db_test
     ports:
-     - "54321:5432"
+     - "5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=12345
@@ -30,14 +30,6 @@ services:
       retries: 5
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts downvolumes:
-
-  jenkins_ops:
-    image: 'jenkins/jenkins:2.314-alpine'
-    container_name: jenkins_ops
-    ports:
-    - "8082:8080"
-    - "50001:50000"
-    depends_on:
-      - db_test
+      -
 volumes:
     database-data: # named volumes can be managed easier using docker-compose

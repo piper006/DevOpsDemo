@@ -7,7 +7,7 @@ node{
     def registryCredentials = 'dockerhub'
 
 
-  
+
     stage('Git pull'){
         git 'https://github.com/piper006/DevOpsDemo.git'
     }
